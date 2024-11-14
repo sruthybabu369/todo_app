@@ -1,16 +1,14 @@
-/* App.css */
-
 /* Fullscreen Background Styling */
 html, body {
-  height: 100%;             
-  margin: 0;                
+  height: 100%;
+  margin: 0;
   padding: 0;
   background-image: url('./assets/yelow2.jpg');
-  background-size: cover; 
+  background-size: cover;
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  font-family: 'Poppins', sans-serif; /* Modern Google font */
+  font-family: 'Poppins', sans-serif;
 }
 
 /* Center the app in the viewport */
@@ -22,7 +20,7 @@ html, body {
   height: 100vh;
   padding: 20px;
   color: rgb(27, 26, 26);
-  background-color: rgba(255, 255, 255, 0.227); /* Semi-transparent background */
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 12px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
@@ -76,30 +74,83 @@ button:hover {
   max-width: 400px;
 }
 
-.task-list li {
+/* Task Item Styling */
+.task-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin: 10px 0;
   padding: 12px;
-  background-color: #f3f3f3;
+  margin: 10px 0;
+  background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
+  overflow: hidden;
 }
 
-.task-list li:hover {
+.task-item:hover {
   transform: scale(1.02);
 }
 
-/* Delete Button Styling */
-.task-list button {
-  background: linear-gradient(135deg, #f44336, #d32f2f);
-  border-radius: 6px;
-  padding: 8px 12px;
-  transition: background 0.3s ease;
+.task-text {
+  flex: 1;
+  font-size: 16px;
+  color: #333;
+  word-wrap: break-word; /* Break long words to wrap within the box */
+  white-space: normal; /* Allow text to wrap to the next line */
+  overflow: hidden;
+  text-overflow: ellipsis; 
 }
 
-.task-list button:hover {
-  background: linear-gradient(135deg, #e53935, #b71c1c);
+/* Checkbox Styling */
+.task-checkbox {
+  appearance: none; /* Remove default checkbox styling */
+  -webkit-appearance: none;
+  margin-right: 10px;
+  cursor: pointer;
+  width: 10px;
+  height: 16px;
+  min-width: 10px; /* Ensures the width doesn't change */
+  min-height: 16px;
+  position: relative;
+  accent-color: #4CAF50; /* Green color for checkbox */
+  border: 2px solid #4CAF50;
+  border-radius: 4px;
+}
+
+/* Checkbox Checked State */
+.task-checkbox:checked {
+  background-color: #4CAF50; /* Checkbox fill color when checked */
+  border-color: #4CAF50;
+}
+
+.task-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+
+/* Green Delete Icon */
+.delete-icon {
+  font-size: 18px;
+  color: #4CAF50;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.delete-icon:hover {
+  color: #2E8B57; /* Darker green on hover */
+}
+
+/* Completed task styling */
+.completed .task-text {
+  text-decoration: line-through;
+  color: gray;
+  opacity: 0.7;
 }

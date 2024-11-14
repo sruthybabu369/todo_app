@@ -1,21 +1,27 @@
 import React, { useState } from 'react';
+import '@fortawesome/fontawesome-free/css/all.min.css'; // Import Font Awesome
 import './App.css';
 
 function App() {
-  const [task, setTask] = useState(''); // For the input field
-  const [tasks, setTasks] = useState([]); // List of all tasks
+  const [task, setTask] = useState('');
+  const [tasks, setTasks] = useState([]);
 
-  // Add a new task to the list
   const handleAddTask = () => {
     if (task.trim()) {
-      setTasks([...tasks, task]);
-      setTask(''); // Clear the input field
+      setTasks([...tasks, { text: task, completed: false }]);
+      setTask('');
     }
   };
 
-  // Delete a task from the list
   const handleDeleteTask = (index) => {
     const updatedTasks = tasks.filter((_, i) => i !== index);
+    setTasks(updatedTasks);
+  };
+
+  const handleToggleCompletion = (index) => {
+    const updatedTasks = tasks.map((t, i) =>
+      i === index ? { ...t, completed: !t.completed } : t
+    );
     setTasks(updatedTasks);
   };
 
@@ -34,9 +40,15 @@ function App() {
 
       <ul className="task-list">
         {tasks.map((task, index) => (
-          <li key={index}>
-            {task}
-            <button onClick={() => handleDeleteTask(index)}>Delete</button>
+          <li key={index} className={`task-item ${task.completed ? 'completed' : ''}`}>
+            <input
+              type="checkbox"
+              checked={task.completed}
+              onChange={() => handleToggleCompletion(index)}
+              className="task-checkbox"
+            />
+            <span className="task-text">{task.text}</span>
+            <i className="fas fa-trash delete-icon" onClick={() => handleDeleteTask(index)}></i>
           </li>
         ))}
       </ul>
@@ -45,4 +57,3 @@ function App() {
 }
 
 export default App;
-
