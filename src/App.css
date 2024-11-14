@@ -101,35 +101,35 @@ button:hover {
   text-overflow: ellipsis; 
 }
 
+.task-text.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
 /* Checkbox Styling */
-.task-checkbox {
-  appearance: none; /* Remove default checkbox styling */
-  -webkit-appearance: none;
-  margin-right: 10px;
-  cursor: pointer;
-  width: 10px;
+.custom-checkbox {
+  width: 16px;
   height: 16px;
-  min-width: 10px; /* Ensures the width doesn't change */
-  min-height: 16px;
-  position: relative;
-  accent-color: #4CAF50; /* Green color for checkbox */
+  margin-right: 10px;
   border: 2px solid #4CAF50;
   border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.2s ease;
+  position: relative;
 }
 
-/* Checkbox Checked State */
-.task-checkbox:checked {
-  background-color: #4CAF50; /* Checkbox fill color when checked */
-  border-color: #4CAF50;
+.custom-checkbox.checked {
+  background-color: #4CAF50;
 }
 
-.task-checkbox:checked::after {
+.custom-checkbox.checked::after {
   content: '';
   position: absolute;
   top: 2px;
-  left: 6px;
-  width: 6px;
-  height: 12px;
+  left: 4px;
+  width: 4px;
+  height: 8px;
   border: solid white;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
