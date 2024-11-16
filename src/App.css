@@ -37,8 +37,8 @@ html, body {
   border-radius: 2px;
   padding-right: 20px;
   padding-top: 5px;
-  padding-bottom: 60px;
-  margin-right: 190px;
+  padding-bottom: 110px;
+  margin-right: 160px;
   margin-left: -19px;
   margin-top: -20px;
   
@@ -133,6 +133,7 @@ button:hover {
   height: 100%;
   overflow-y: auto;
   padding: 10px;
+  
   background: rgba(255, 255, 255, 0.295);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
