@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import './App.css';
+
 
 function App() {
   const [task, setTask] = useState('');
@@ -16,6 +17,7 @@ function App() {
   });
   const [filter, setFilter] = useState('all');
   const [quote, setQuote] = useState('');
+  const intervalRef = useRef(null); 
 
   // List of motivational quotes
   const quotes = [
@@ -23,7 +25,8 @@ function App() {
     "Don't let yesterday take up too much of today.",
     "It’s not whether you get knocked down, it’s whether you get up.",
     "You learn more from failure than from success. Don’t let it stop you.",
-    "The only limit to our realization of tomorrow is our doubts of today."
+    "The only limit to our realization of tomorrow is our doubts of today.",
+    "Believe you can and you're halfway there."
   ];
 
   useEffect(() => {
@@ -35,13 +38,20 @@ function App() {
   }, [tasks]);
 
   useEffect(() => {
-    fetchRandomQuote();
+    const fetchRandomQuote = () => {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      setQuote(quotes[randomIndex]);
+    };
+
+    // Display a new quote every 5 seconds
+    fetchRandomQuote(); // Fetch an initial quote
+    intervalRef.current = setInterval(fetchRandomQuote, 5000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalRef.current);
   }, []);
 
-  const fetchRandomQuote = () => {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    setQuote(quotes[randomIndex]);
-  };
+   
 
   const handleAddTask = () => {
     if (task.trim()) {
@@ -49,7 +59,7 @@ function App() {
       setTasks([...tasks, newTask]);
       setTask('');
       setDueDate('');
-      fetchRandomQuote();
+      
     }
   };
 
@@ -133,7 +143,7 @@ function App() {
 
       <div className="quote-section">
         <h2>Motivational Quote</h2>
-        <p>{quote}</p>
+        <p className="quote-text">{quote}</p>
       </div>
     </div>
   );

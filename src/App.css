@@ -33,7 +33,7 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background: rgba(255, 255, 255, 0.579);
+  background: rgba(255, 255, 255, 0.54);
   border-radius: 2px;
   padding-right: 20px;
   padding-top: 5px;
@@ -65,6 +65,8 @@ html, body {
   flex: 0.3; /* Takes up a smaller width */
   position: relative;
   padding: 56px;
+  padding-left: 80px;
+  padding-bottom: 199px;
   background: rgba(255, 255, 255, 0.489);
   border-radius: 1px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -76,7 +78,7 @@ html, body {
   align-items: center;
   font-size: 18px;
   height: 100%;
-  margin-top: -20px;
+  margin-top: -160px;
   margin-left: 20px;
   margin-right: -20px;
 }
@@ -134,8 +136,8 @@ button:hover {
   overflow-y: auto;
   padding: 10px;
   
-  background: rgba(255, 255, 255, 0.295);
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.182);
+  border-radius: 3px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -254,9 +256,70 @@ button:hover {
 
 /* Right-Side Quote Section */
 .quote-section p {
-  font-size: 18px;
-  color: #333;
+  font-size: 22px; /* Slightly larger font size for better visibility */
+  color: #148516; /* A softer gray for a modern look */
   margin: 0;
-  margin-top: 5px;
-  padding-bottom: 190px;
+  margin-top: 49px;
+  
+  line-height: 1.6; /* Improved readability */
+  text-align: center; /* Center aligns the quote for better emphasis */
+}
+
+/* Add fade-in animation to the quote text */
+.quote-text {
+  position: relative;
+  animation: fadeIn 1s ease-in-out;
+  font-size: 28px; /* Larger font for the main quote */
+  color: #e0aa13; /* A rich, deep color for eye-catching text */
+  font-family: 'Playfair Display', serif; /* Elegant serif font */
+  font-weight: bold; /* Bold style for emphasis */
+  letter-spacing: 1.5px; /* Slight spacing between letters */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.227); /* Subtle shadow for depth */
+  margin: 0;
+  padding: 10px 20px;
+   /* Stylish accent border on the left */
+  display: inline-block;
+   /* Gradient background for subtle texture */
+  border-radius: 8px; /* Rounded corners for a soft appearance */
+  background: linear-gradient(135deg, #449748, #228e22);
+  -webkit-background-clip: text; /* Ensures the background is clipped to the text */
+  -webkit-text-fill-color: transparent; /* Makes the text transparent to show the background */
+  background-clip: text;
+  
+}
+
+.quote-text::before,
+.quote-text::after {
+  -webkit-background-clip: none; /* Ensure no background clipping here */
+  -webkit-text-fill-color: initial; /* Revert to normal text fill */
+}
+
+.quote-text::before {
+  content: open-quote; /* Adds the opening quote */
+  font-size: 40px;
+  color: #148516; /* Can remain a solid color or change to gradient too */
+  position: absolute;
+  left: -25px;
+  top: -10px;
+}
+
+.quote-text::after {
+  content: close-quote; /* Adds the closing quote */
+  font-size: 40px;
+  color: #148516; /* Can remain a solid color or change to gradient too */
+  position: absolute;
+  right: -25px;
+  bottom: -10px;
+}
+
+/* Keyframes for fade-in effect */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
