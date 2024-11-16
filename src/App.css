@@ -16,14 +16,14 @@ html, body {
 .app {
   display: flex;
   justify-content: space-between; /* Left, Center, Right layout */
-  align-items: flex-start;
+  align-items: stretch;
   height: 100vh;
   padding: 20px;
   
   border-radius: 12px;
   
-  width: 100%;
-  max-width: 1400px; /* Optional: limit the width of the app */
+  
+   /* Optional: limit the width of the app */
   margin: 0 auto;
 }
 
@@ -33,9 +33,17 @@ html, body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  background: rgba(255, 255, 255, 0.579);
+  border-radius: 2px;
   padding-right: 20px;
-  padding-top: 20px;
-  margin-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 60px;
+  margin-right: 190px;
+  margin-left: -19px;
+  margin-top: -20px;
+  
+  height: 100%; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Input Section (Center) */
@@ -46,8 +54,8 @@ html, body {
   justify-content: center;
   align-items: center;
   padding: 20px;
-  margin-top: 140px;
-  margin-right: 110px;
+  margin-top: 100px;
+  margin-right: 220px;
   border-radius: 12px;
   
 }
@@ -56,18 +64,21 @@ html, body {
 .quote-section {
   flex: 0.3; /* Takes up a smaller width */
   position: relative;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
+  padding: 56px;
+  background: rgba(255, 255, 255, 0.489);
+  border-radius: 1px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   font-style: italic;
   text-align: center;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   font-size: 18px;
-  height: 50%;
+  height: 100%;
+  margin-top: -20px;
   margin-left: 20px;
+  margin-right: -20px;
 }
 
 /* Input Section Styling */
@@ -119,10 +130,10 @@ button:hover {
 .task-container {
   width: 100%;
   max-width: 400px;
-  height: 400px;
+  height: 100%;
   overflow-y: auto;
   padding: 10px;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.295);
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -245,4 +256,6 @@ button:hover {
   font-size: 18px;
   color: #333;
   margin: 0;
+  margin-top: 5px;
+  padding-bottom: 190px;
 }
