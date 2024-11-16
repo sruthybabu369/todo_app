@@ -9,41 +9,79 @@ html, body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   font-family: 'Poppins', sans-serif;
+  color: #333; /* Set a base text color for all elements */
 }
 
 /* Center the app in the viewport */
 .app {
   display: flex;
+  justify-content: space-between; /* Left, Center, Right layout */
+  align-items: flex-start;
+  height: 100vh;
+  padding: 20px;
+  
+  border-radius: 12px;
+  
+  width: 100%;
+  max-width: 1400px; /* Optional: limit the width of the app */
+  margin: 0 auto;
+}
+
+/* Task Section (Left) */
+.task-section {
+  flex: 1; /* Takes up one-third of space */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-right: 20px;
+  padding-top: 20px;
+  margin-right: 20px;
+}
+
+/* Input Section (Center) */
+.input-section {
+  flex: 1; /* Takes up the center area */
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   padding: 20px;
-  color: rgb(27, 26, 26);
-  background-color: rgba(255, 255, 255, 0.3);
+  margin-top: 140px;
+  
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  
+}
+
+/* Quote Section (Right) */
+.quote-section {
+  flex: 0.3; /* Takes up a smaller width */
+  position: relative;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  font-style: italic;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  height: 50%;
+  margin-left: 20px;
 }
 
 /* Input Section Styling */
-.input-section {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 30px;
+.input-section input {
   width: 100%;
-  max-width: 400px;
-}
-
-input {
   padding: 12px;
-  flex: 1;
   border: none;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
+  margin-bottom: 15px;
 }
 
-input:focus {
+.input-section input:focus {
   outline: none;
   box-shadow: 0 4px 12px rgba(0, 128, 255, 0.3);
 }
@@ -65,13 +103,41 @@ button:hover {
   transform: scale(1.05);
 }
 
+/* Task Container Styling */
+.task-container {
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  overflow-y: auto;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Add stylish scrollbar for tasks */
+.task-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.task-container::-webkit-scrollbar-thumb {
+  background: #4caf50;
+  border-radius: 8px;
+}
+
+.task-container::-webkit-scrollbar-thumb:hover {
+  background: #2e8b57;
+}
+
 /* Task List Styling */
 .task-list {
   list-style: none;
   padding: 0;
   margin: 0;
   width: 100%;
-  max-width: 400px;
 }
 
 /* Task Item Styling */
@@ -84,7 +150,6 @@ button:hover {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
-  overflow: hidden;
 }
 
 .task-item:hover {
@@ -95,46 +160,14 @@ button:hover {
   flex: 1;
   font-size: 16px;
   color: #333;
-  word-wrap: break-word; /* Break long words to wrap within the box */
-  white-space: normal; /* Allow text to wrap to the next line */
-  overflow: hidden;
-  text-overflow: ellipsis; 
+  word-wrap: break-word;
+  white-space: normal;
 }
 
 .task-text.completed {
   text-decoration: line-through;
   color: #888;
 }
-
-/* Checkbox Styling */
-.custom-checkbox {
-  width: 16px;
-  height: 16px;
-  margin-right: 10px;
-  border: 2px solid #4CAF50;
-  border-radius: 4px;
-  cursor: pointer;
-  display: inline-block;
-  transition: background-color 0.2s ease;
-  position: relative;
-}
-
-.custom-checkbox.checked {
-  background-color: #4CAF50;
-}
-
-.custom-checkbox.checked::after {
-  content: '';
-  position: absolute;
-  top: 2px;
-  left: 4px;
-  width: 4px;
-  height: 8px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-}
-
 
 /* Green Delete Icon */
 .delete-icon {
@@ -148,9 +181,53 @@ button:hover {
   color: #2E8B57; /* Darker green on hover */
 }
 
-/* Completed task styling */
-.completed .task-text {
-  text-decoration: line-through;
-  color: gray;
-  opacity: 0.7;
+/* Custom Checkbox Styling */
+.custom-checkbox {
+  margin-right: 10px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #4caf50;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  appearance: none; /* Remove default styles */
+  outline: none;
+  display: inline-block;
+}
+
+.custom-checkbox:checked {
+  background-color: #4caf50;
+  position: relative;
+}
+
+.custom-checkbox:checked::after {
+  content: '✔';
+  font-size: 12px;
+  color: white;
+  position: absolute;
+  top: 0px;
+  left: 4px;
+}
+
+
+/* Filter Section Styling */
+.filter-section {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.filter-section select {
+  margin-left: 10px;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+}
+
+/* Right-Side Quote Section */
+.quote-section p {
+  font-size: 18px;
+  color: #333;
+  margin: 0;
 }
