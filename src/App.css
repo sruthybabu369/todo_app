@@ -207,6 +207,46 @@ button:hover {
   color: #2E8B57; /* Darker green on hover */
 }
 
+.edit-icon {
+  font-size: 18px;
+  color: #e7af09c8;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.edit-icon:hover {
+  color: #e0a800;
+}
+
+/* Task Header */
+.task-header {
+  display: flex;
+  justify-content: space-between; /* Align the heading and button */
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+
+/* Clear All Button */
+.clear-all-btn {
+  padding: 6px 12px;
+  background: #569969;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+.clear-all-btn:hover {
+  background: #912828;
+  transform: scale(1.05);
+}
+
+
+
 /* Custom Checkbox Styling */
 .custom-checkbox {
   margin-right: 10px;

@@ -17,6 +17,7 @@ function App() {
   });
   const [filter, setFilter] = useState('all');
   const [quote, setQuote] = useState('');
+  const [editingIndex, setEditingIndex] = useState(null);
   const intervalRef = useRef(null); 
 
   // List of motivational quotes
@@ -55,17 +56,35 @@ function App() {
 
   const handleAddTask = () => {
     if (task.trim()) {
-      const newTask = { text: task, dueDate: dueDate, completed: false };
-      setTasks([...tasks, newTask]);
+      if (editingIndex !== null) {
+        // Update existing task
+        const updatedTasks = [...tasks];
+        updatedTasks[editingIndex] = { ...updatedTasks[editingIndex], text: task, dueDate };
+        setTasks(updatedTasks);
+        setEditingIndex(null); // Reset editing state
+      } else {
+        // Add new task
+        const newTask = { text: task, dueDate: dueDate, completed: false };
+        setTasks([...tasks, newTask]);
+      }
       setTask('');
       setDueDate('');
-      
     }
   };
 
   const handleDeleteTask = (index) => {
     const updatedTasks = tasks.filter((_, i) => i !== index);
     setTasks(updatedTasks);
+  };
+
+  const handleEditTask = (index) => {
+    setTask(tasks[index].text);
+    setDueDate(tasks[index].dueDate);
+    setEditingIndex(index); // Set editing state
+  };
+
+  const handleClearAll = () => {
+    setTasks([]); // Clear all tasks
   };
 
   const toggleTaskCompletion = (index) => {
@@ -87,7 +106,12 @@ function App() {
   return (
     <div className="app">
       <div className="task-section">
-        <h2>Task List</h2>
+        <div className="task-header">
+          <h2>Task List</h2>
+          <button className="clear-all-btn" onClick={() => setTasks([])}>
+            Clear All
+          </button>
+        </div>
         <div className="task-container">
           {filteredTasks.length > 0 ? (
             <ul className="task-list">
@@ -104,6 +128,7 @@ function App() {
                  {task.dueDate && <span className="due-date"> (Due: {task.dueDate})</span>}
                </span>
                <i className="fas fa-trash delete-icon" onClick={() => handleDeleteTask(index)}></i>
+               <i className="fas fa-edit edit-icon" onClick={() => handleEditTask(index)}></i>
              </li>
               
               ))}
@@ -112,10 +137,11 @@ function App() {
             <p className="no-tasks">No tasks added yet!</p>
           )}
         </div>
+        
       </div>
 
       <div className="input-section">
-        <h2>Add Task</h2>
+        <h2>{editingIndex !== null ? 'Edit Task' : 'Add Task'}</h2>
         <input
           type="text"
           placeholder="Enter a task"
@@ -127,7 +153,7 @@ function App() {
           value={dueDate}
           onChange={(e) => setDueDate(e.target.value)}
         />
-        <button onClick={handleAddTask}>Add Task</button>
+        <button onClick={handleAddTask}>{editingIndex !== null ? 'Update Task' : 'Add Task'}</button>
 
         <div className="filter-section">
           <label>
