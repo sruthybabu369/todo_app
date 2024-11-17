@@ -325,7 +325,7 @@ button:hover {
   display: inline-block;
    /* Gradient background for subtle texture */
   border-radius: 8px; /* Rounded corners for a soft appearance */
-  background: linear-gradient(135deg, #449748, #228e22);
+  background: linear-gradient(135deg, #3c6e3f, #1d6c1d);
   -webkit-background-clip: text; /* Ensures the background is clipped to the text */
   -webkit-text-fill-color: transparent; /* Makes the text transparent to show the background */
   background-clip: text;
