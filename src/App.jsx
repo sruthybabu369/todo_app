@@ -18,6 +18,7 @@ function App() {
   const [filter, setFilter] = useState('all');
   const [quote, setQuote] = useState('');
   const [editingIndex, setEditingIndex] = useState(null);
+  const [expandedTaskIndex, setExpandedTaskIndex] = useState(null);
   const intervalRef = useRef(null); 
 
   // List of motivational quotes
@@ -53,9 +54,13 @@ function App() {
   }, []);
 
    
-
+  const MAX_TASK_LENGTH = 50;
   const handleAddTask = () => {
     if (task.trim()) {
+      if (task.length > MAX_TASK_LENGTH) {
+        alert(`Task name cannot exceed ${MAX_TASK_LENGTH} characters.`);
+        return;
+      }
       if (editingIndex !== null) {
         // Update existing task
         const updatedTasks = [...tasks];
@@ -73,8 +78,7 @@ function App() {
   };
 
   const handleDeleteTask = (index) => {
-    const updatedTasks = tasks.filter((_, i) => i !== index);
-    setTasks(updatedTasks);
+    setTasks(tasks.filter((_, i) => i !== index));
   };
 
   const handleEditTask = (index) => {
@@ -103,6 +107,10 @@ function App() {
     return true;
   });
 
+  const handleExpandTask = (index) => {
+    setExpandedTaskIndex((prevIndex) => (prevIndex === index ? null : index));// Toggle the expanded state
+  };
+
   return (
     <div className="app">
       <div className="task-section">
@@ -124,8 +132,30 @@ function App() {
                  onChange={() => toggleTaskCompletion(index)}
                />
                <span className={`task-text ${task.completed ? 'completed' : ''}`}>
-                 {task.text}
-                 {task.dueDate && <span className="due-date"> (Due: {task.dueDate})</span>}
+                  {expandedTaskIndex === index ? (
+                      <>
+                        {task.text} <span className="due-date">(Due: {task.dueDate})</span>
+                        <span
+                          className="ellipsis"
+                          onClick={() => handleExpandTask(index)}
+                        >
+                          Show Less
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        {task.text.length > 30 ? `${task.text.slice(0, 30)}...` : task.text}
+                        {task.text.length > 30 && (
+                          <span
+                            className="ellipsis"
+                            onClick={() => handleExpandTask(index)}
+                          >
+                            Show More
+                          </span>
+                        )}
+                      </>
+                    )}
+                  
                </span>
                <i className="fas fa-trash delete-icon" onClick={() => handleDeleteTask(index)}></i>
                <i className="fas fa-edit edit-icon" onClick={() => handleEditTask(index)}></i>

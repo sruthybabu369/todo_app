@@ -171,6 +171,7 @@ button:hover {
 .task-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 12px;
   margin: 10px 0;
   background-color: #f9f9f998;
@@ -188,10 +189,21 @@ button:hover {
   font-size: 16px;
   color: #333;
   word-wrap: break-word;
-  
-  white-space: nowrap; /* Prevent text from wrapping */
+  word-break: break-word;
+  white-space: pre-wrap;
+  max-width: 65%; /* Prevent text from wrapping */
   overflow: hidden; /* Hide overflowing text */
   text-overflow: ellipsis; 
+}
+
+.ellipsis {
+  color: rgb(215, 127, 19);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.ellipsis:hover {
+  color: rgb(180, 98, 11);
 }
 
 .task-text.completed {
@@ -205,6 +217,7 @@ button:hover {
   color: #4CAF50;
   cursor: pointer;
   transition: color 0.3s ease;
+  margin-left: 10px;
 }
 
 .delete-icon:hover {
