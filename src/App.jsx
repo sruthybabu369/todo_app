@@ -157,6 +157,7 @@ function App() {
                     )}
                   
                </span>
+               <span className="due-date">(Due: {task.dueDate || 'No date set'})</span>
                <i className="fas fa-trash delete-icon" onClick={() => handleDeleteTask(index)}></i>
                <i className="fas fa-edit edit-icon" onClick={() => handleEditTask(index)}></i>
              </li>
