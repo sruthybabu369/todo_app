@@ -35,7 +35,7 @@ html, body {
   justify-content: flex-start;
   background: rgba(255, 255, 255, 0.54);
   border-radius: 2px;
-  padding-right: 20px;
+  padding-right: 11px;
   padding-top: 5px;
   padding-bottom: 110px;
   margin-right: 160px;
@@ -135,6 +135,7 @@ button:hover {
   height: 100%;
   overflow-y: auto;
   padding: 10px;
+  margin-left: -8px;
   
   background: rgba(255, 255, 255, 0.182);
   border-radius: 3px;
@@ -172,7 +173,7 @@ button:hover {
   align-items: center;
   padding: 12px;
   margin: 10px 0;
-  background-color: #f9f9f9;
+  background-color: #f9f9f998;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
@@ -187,7 +188,10 @@ button:hover {
   font-size: 16px;
   color: #333;
   word-wrap: break-word;
-  white-space: normal;
+  
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; 
 }
 
 .task-text.completed {
