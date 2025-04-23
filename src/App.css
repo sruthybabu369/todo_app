@@ -14,6 +14,7 @@ html, body {
 
 /* Center the app in the viewport */
 .app {
+  
   display: flex;
   justify-content: space-between; /* Left, Center, Right layout */
   align-items: stretch;
