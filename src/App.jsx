@@ -8,9 +8,8 @@ function App() {
   const [dueDate, setDueDate] = useState('');
   const [tasks, setTasks] = useState(() => {
     try {
-      const savedTasks = localStorage.getItem('tasks');
-      const parsed = JSON.parse(savedTasks);
-      return Array.isArray(parsed) ? parsed : [];
+      const savedTasks = JSON.parse(localStorage.getItem('tasks'));
+      return Array.isArray(savedTasks) ? savedTasks.filter(Boolean) : [];
     } catch (error) {
       console.error('Error loading tasks from localStorage:', error);
       return [];
